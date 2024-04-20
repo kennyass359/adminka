@@ -1,14 +1,17 @@
-const { readData, writeData } = require("../utils");
+const allowedCors = [
+  "https://prakticum.yandex.ru",
+  "https://my-website.com",
+  "localhost:3000",
+];
 
-const sendAllGames = async (req, res) => {
-  res.send(req.games);
-};
+function cors(req, res, next) {
+  const { origin } = req.headers;
 
-const sendUpdatedGames = async (req, res) => {
-  res.send({
-    games: req.games,
-    updated: req.updatedObject,
-  });
-};
+  if (allowedCors.includes(origin)) {
+    res.headers("Access-Control-Allow-Origin", origin);
+  }
 
-module.exports = { sendAllGames, sendUpdatedGames };
+  next();
+}
+
+module.exports = cors;

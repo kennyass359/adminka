@@ -18,7 +18,6 @@ app.use(
 );
 
 app.get("/games/:id", (req, res) => {
-  //кодд, который обрабатывает игру с :id == 1-8
 });
 
 app.listen(PORT, () => {
