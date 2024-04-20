@@ -35,7 +35,6 @@ const updateGamesArray = async (req, res, next) => {
       link: req.body.link,
       description: req.body.description,
     };
-    // Добавляем данные о новой игре в список с другими играми
     req.games = [...req.games, req.updatedObject];
     next();
   } else {
