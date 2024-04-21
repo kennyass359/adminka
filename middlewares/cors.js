@@ -1,17 +1,15 @@
-const allowedCors = [
-  "https://prakticum.yandex.ru",
-  "https://my-website.com",
-  "localhost:3000",
-];
+const PORT = require('../app.js');
 
-function cors(req, res, next) {
-  const { origin } = req.headers;
+const allowedCors = ['https://practicum.yandex.ru', 'https://students-projects.ru', `localhost:${PORT}`];
 
-  if (allowedCors.includes(origin)) {
-    res.headers("Access-Control-Allow-Origin", origin);
-  }
-
-  next();
+function cors(app) {
+  return (req, res, next) => {
+    const { origin } = req.headers;
+    if (allowedCors.includes(origin)) {
+      res.header('Access-Control-Allow-Origin', '*');
+    }
+    next();
+  };
 }
 
 module.exports = cors;
