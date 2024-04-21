@@ -1,11 +1,10 @@
-const mainRouter = require("express").Router();
-const fs = require("fs").promises;
 
-mainRouter.get("/", async (req, res) => {
-  await fs.readFile("./public/index.html").then((data) => {
-    res.header("Content-Type", "text/html");
-    res.send(data);
+const fs = require('fs').promises;
+const mainRoute = require('express').Router();
+
+mainRoute.get('/', (req, res) => {
+  fs.readFile('./public/index.html', 'utf-8').then((data) => {
+    res.header('Content-Type', 'text/html').send(data);
   });
 });
-
-module.exports = mainRouter;
+module.exports = mainRoute;
